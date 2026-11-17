@@ -341,7 +341,7 @@
           <span class="section-number-badge">${number}</span>
           ${escapeHtml(title)}
         </h2>
-        <div style="display: flex; flex-wrap: wrap; gap: 0.45rem; align-items: center;">
+        <div class="capsule-section-actions">
           ${bookmarkBtn}
           ${checkBtn}
         </div>
@@ -397,9 +397,9 @@
         return `
           <article class="fundamental-card">
             <div>
-              <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.4rem;">
+              <div class="fundamental-card-top">
                 <span class="fundamental-category">${escapeHtml(item.category)}</span>
-                <div style="display: flex; gap: 0.3rem;">
+                <div class="fundamental-card-actions">
                   <button
                     type="button"
                     class="btn-save-concept"
@@ -1157,7 +1157,7 @@
             <span class="time-pill">&#9201; ${mod.estimatedMinutes || 30} min</span>
           </div>
 
-          <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+          <div class="capsule-hero-actions">
             <button
               type="button"
               class="btn-bookmark-sec ${isTopBookmarked ? 'bookmarked' : ''}"
@@ -1179,7 +1179,7 @@
         </div>
 
         <div class="capsule-hero-main">
-          <div style="flex: 1 1 380px;">
+          <div class="capsule-hero-content">
             <h1 class="capsule-hero-title">${escapeHtml(mod.title)}</h1>
             <p class="capsule-hero-summary">${escapeHtml(mod.summary)}</p>
 

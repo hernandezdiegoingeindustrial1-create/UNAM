@@ -235,8 +235,8 @@
             </p>
           </div>
 
-          <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;">
-            <select id="srs-subject-select" class="search-input" style="width: auto; padding: 0.4rem 0.75rem;">
+          <div class="capsule-section-actions">
+            <select id="srs-subject-select" class="search-input">
               <option value="all" ${reviewState.srsFilterSubject === 'all' ? 'selected' : ''}>Todas las materias</option>
               ${subjectOptions}
             </select>
@@ -579,16 +579,15 @@
             </h2>
           </div>
 
-          <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;">
+          <div class="capsule-section-actions">
             <input
               type="search"
               id="qbank-search-input"
               class="search-input"
-              style="width: 210px; padding: 0.4rem 0.75rem;"
               placeholder="Buscar en reactivos..."
               value="${escapeHtml(reviewState.qbankSearch)}"
             >
-            <select id="qbank-subject-select" class="search-input" style="width: auto; padding: 0.4rem 0.75rem;">
+            <select id="qbank-subject-select" class="search-input">
               <option value="all" ${reviewState.qbankSubject === 'all' ? 'selected' : ''}>Todas las materias</option>
               ${subjectOptions}
             </select>
@@ -653,15 +652,15 @@
             Añadir nuevo concepto o fórmula favorita
           </h2>
         </header>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.75rem; margin-bottom: 0.75rem;">
-          <input type="text" id="fav-custom-term" class="search-input" style="width:100%;" placeholder="Nombre del concepto o fórmula...">
-          <select id="fav-custom-module" class="search-input" style="width:100%;">
+        <div class="fundamentals-grid" style="margin-bottom: 0.75rem;">
+          <input type="text" id="fav-custom-term" class="search-input" placeholder="Nombre del concepto o fórmula...">
+          <select id="fav-custom-module" class="search-input">
             ${moduleOptionsHtml}
           </select>
-          <input type="text" id="fav-custom-key" class="search-input" style="width:100%;" placeholder="Regla o idea clave para recordar...">
+          <input type="text" id="fav-custom-key" class="search-input" placeholder="Regla o idea clave para recordar...">
         </div>
-        <div style="display: flex; gap: 0.75rem; align-items: center;">
-          <input type="text" id="fav-custom-def" class="search-input" style="flex:1;" placeholder="Definición o explicación breve...">
+        <div class="assistant-input-row">
+          <input type="text" id="fav-custom-def" class="search-input" placeholder="Definición o explicación breve...">
           <button type="button" class="btn btn-primary" data-rc-action="add-custom-favorite">
             &#9733; Guardar en favoritos
           </button>
@@ -679,7 +678,6 @@
             type="search"
             id="fav-search-input"
             class="search-input"
-            style="width: 240px; padding: 0.4rem 0.75rem;"
             placeholder="Buscar en favoritos..."
             value="${escapeHtml(reviewState.favSearch)}"
           >

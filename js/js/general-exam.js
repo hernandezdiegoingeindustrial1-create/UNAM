@@ -523,8 +523,8 @@
           </div>
         </header>
 
-        <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem;">
-          <div>
+        <div class="exam-config-row">
+          <div style="width: 100%;">
             <label style="font-size: 0.84rem; font-weight: 600; color: var(--text-secondary); display: block; margin-bottom: 0.45rem;">
               Número de preguntas del examen:
             </label>
@@ -544,7 +544,7 @@
             </div>
           </div>
 
-          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem;">
+          <div class="capsule-section-actions" style="margin-top: 0.85rem;">
             <button
               type="button"
               class="chip ${examState.onlyStudiedModules ? 'active' : ''}"
@@ -556,7 +556,6 @@
             <button
               type="button"
               class="btn btn-primary"
-              style="padding: 0.68rem 1.4rem; font-size: 0.95rem;"
               data-exam-action="start-exam"
             >
               Iniciar Examen General &rarr;
@@ -874,7 +873,7 @@
         </div>
 
         <!-- Botones de acción principales -->
-        <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.35rem; padding-top: 1.1rem; border-top: 1px solid var(--border-color);">
+        <div class="capsule-section-actions" style="margin-top: 1.35rem; padding-top: 1.1rem; border-top: 1px solid var(--border-color);">
           <button type="button" class="btn btn-primary" data-exam-action="retry-exam">
             &#8635; Reintentar examen
           </button>

@@ -514,11 +514,11 @@
 
     dom.activeHubContainer.innerHTML = `
       <div class="learned-today-box">
-        <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.75rem;">
+        <div class="capsule-section-header" style="border-bottom: none; padding-bottom: 0; margin-bottom: 0.5rem;">
           <h2 style="font-size: 1.15rem; font-weight: 700; color: var(--text-primary);">
             &#128161; Registrar en "Lo que aprendí hoy"
           </h2>
-          <select id="hub-learning-module-select" class="search-input" style="width: auto; min-width: 260px;">
+          <select id="hub-learning-module-select" class="search-input">
             ${moduleOptionsHtml}
           </select>
         </div>
@@ -529,7 +529,7 @@
           placeholder="Sintetiza con tus palabras qué aprendiste hoy, qué truco descubriste o qué error ya no volverás a cometer..."
         ></textarea>
 
-        <div style="display: flex; justify-content: flex-end;">
+        <div class="capsule-section-actions">
           <button type="button" class="btn btn-primary" data-hub-action="add-daily-learning">
             Guardar aprendizaje de hoy
           </button>
