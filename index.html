@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estudio UNAM — Aprendizaje Activo y Repaso Inteligente</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/capsule.css">
+</head>
+<body>
+  <!-- Barra de navegación superior -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#" class="brand" id="nav-brand" aria-label="Ir al inicio">
+        <span class="brand-dot"></span>
+        <span class="brand-title">Estudio<span>UNAM</span></span>
+      </a>
+
+      <nav class="main-nav" aria-label="Navegación principal">
+        <button type="button" class="nav-link active" data-view="subjects" id="nav-subjects">
+          Materias
+        </button>
+        <button type="button" class="nav-link" data-view="modules-index" id="nav-all-modules">
+          Módulos
+        </button>
+        <button type="button" class="nav-link" data-view="general-exam" id="nav-general-exam">
+          Examen General
+        </button>
+        <button type="button" class="nav-link" data-view="review-center" id="nav-review-center">
+          Centro de Repaso
+        </button>
+        <button type="button" class="nav-link" data-view="active-hub" id="nav-active-hub">
+          Lo que aprendí hoy
+        </button>
+      </nav>
+
+      <!-- Resumen rápido de avance global -->
+      <div class="global-progress" title="Progreso global de aprendizaje activo">
+        <span class="global-progress-label" id="global-progress-text">0 / 0 completados (0%)</span>
+        <div class="progress-track progress-track-sm">
+          <div class="progress-fill" id="global-progress-bar" style="width: 0%"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Contenido principal -->
+  <main class="container main-content">
+    <!-- Banner de Recomendación Inteligente / Marcador Activo -->
+    <div id="continue-banner" class="continue-banner" hidden>
+      <div class="continue-banner-info">
+        <span class="continue-icon" id="continue-banner-icon">&#129504;</span>
+        <div>
+          <span class="continue-label" id="continue-banner-eyebrow">Sugerencia del sistema</span>
+          <p class="continue-title" id="continue-banner-title">Materia &middot; Módulo</p>
+        </div>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+        <button type="button" class="btn btn-secondary" id="btn-open-review-center">
+          Ir al Centro de Repaso
+        </button>
+        <button type="button" class="btn btn-primary" id="btn-continue-bookmark">
+          Estudiar sugerencia &rarr;
+        </button>
+      </div>
+    </div>
+
+    <!-- Migas de pan (Breadcrumbs) dinámicas -->
+    <nav class="breadcrumbs" id="breadcrumbs" aria-label="Ruta de navegación" hidden>
+      <button type="button" class="breadcrumb-back" id="btn-back-subjects">
+        &larr; Materias
+      </button>
+      <span class="breadcrumb-sep">/</span>
+      <button type="button" class="breadcrumb-back" id="btn-back-subject-detail" hidden>
+        Materia
+      </button>
+      <span class="breadcrumb-sep" id="breadcrumb-sep-2" hidden>/</span>
+      <span class="breadcrumb-current" id="breadcrumb-current">Actual</span>
+    </nav>
+
+    <!-- VISTA 1: Catálogo de Materias -->
+    <section id="view-subjects" class="view-section active" aria-labelledby="subjects-heading">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Entorno de aprendizaje activo y adaptativo</p>
+          <h1 id="subjects-heading" class="page-title">Materias de estudio</h1>
+          <p class="page-subtitle">
+            Estudia con cápsulas activas, repetición espaciada, detección de errores frecuentes y sugerencias automáticas según tu rendimiento.
+          </p>
+        </div>
+
+        <div class="filter-bar">
+          <input
+            type="search"
+            id="subject-search"
+            class="search-input"
+            placeholder="Buscar materia, módulo o concepto..."
+            aria-label="Buscar materia, módulo o concepto"
+          >
+        </div>
+      </div>
+
+      <div id="subjects-grid" class="subjects-grid" role="list">
+        <!-- Tarjetas de materias generadas desde js/app.js -->
+      </div>
+    </section>
+
+    <!-- VISTA 2: Detalle de una Materia y sus Módulos -->
+    <section id="view-subject-detail" class="view-section" aria-labelledby="subject-detail-title" hidden>
+      <div class="subject-banner" id="subject-banner">
+        <div class="subject-banner-info">
+          <span class="subject-badge" id="subject-detail-area">Área</span>
+          <h1 id="subject-detail-title" class="page-title">Nombre de la Materia</h1>
+          <p id="subject-detail-desc" class="page-subtitle">Descripción de la materia.</p>
+        </div>
+
+        <div class="subject-stats-card">
+          <div class="subject-stats-top">
+            <span class="stats-label">Avance de la materia</span>
+            <strong class="stats-value" id="subject-progress-percent">0%</strong>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" id="subject-progress-bar" style="width: 0%"></div>
+          </div>
+          <p class="stats-meta" id="subject-progress-count">0 de 0 cápsulas completadas</p>
+        </div>
+      </div>
+
+      <div class="modules-header">
+        <h2 class="section-subtitle">Cápsulas de aprendizaje activo</h2>
+        <div class="module-filters" role="group" aria-label="Filtrar módulos por estado o comprensión">
+          <button type="button" class="chip active" data-filter="all">Todos</button>
+          <button type="button" class="chip" data-filter="not_started">No iniciados</button>
+          <button type="button" class="chip" data-filter="in_progress">En progreso</button>
+          <button type="button" class="chip" data-filter="completed">Completados</button>
+          <button type="button" class="chip" data-filter="needs_review">&#128993; Necesito repasar</button>
+        </div>
+      </div>
+
+      <div id="modules-list" class="modules-list" role="list">
+        <!-- Lista de módulos generada dinámicamente -->
+      </div>
+    </section>
+
+    <!-- VISTA 3: Índice Rápido de Todos los Módulos -->
+    <section id="view-modules-index" class="view-section" aria-labelledby="all-modules-heading" hidden>
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Mapa general del temario</p>
+          <h1 id="all-modules-heading" class="page-title">Todas las cápsulas de estudio</h1>
+          <p class="page-subtitle">
+            Consulta tu indicador de comprensión, notas, historial y avance por cada módulo del temario.
+          </p>
+        </div>
+      </div>
+      <div id="all-modules-container" class="all-modules-container">
+        <!-- Agrupación de módulos por materia -->
+      </div>
+    </section>
+
+    <!-- VISTA 4: Examen General (Evaluación Multidisciplinaria) -->
+    <section id="view-general-exam" class="view-section" aria-labelledby="general-exam-heading" hidden>
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Simulador multidisciplinario</p>
+          <h1 id="general-exam-heading" class="page-title">Examen General</h1>
+          <p class="page-subtitle">
+            Evalúa los conocimientos adquiridos en todas las materias y módulos con reactivos de 4 opciones, calificación sobre 100 y diagnóstico detallado.
+          </p>
+        </div>
+      </div>
+      <div id="general-exam-container">
+        <!-- Renderizado dinámicamente desde js/general-exam.js -->
+      </div>
+    </section>
+
+    <!-- VISTA 5: Centro de Repaso Inteligente (SRS, Errores frecuentes, Banco de preguntas, Favoritos, Repaso diario) -->
+    <section id="view-review-center" class="view-section" aria-labelledby="review-center-heading" hidden>
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Sistema adaptativo de retención</p>
+          <h1 id="review-center-heading" class="page-title">Centro de Repaso Inteligente</h1>
+          <p class="page-subtitle">
+            El sistema analiza tus aciertos, errores y fechas de olvido para recomendarte qué repasar hoy mediante repetición espaciada y práctica dirigida.
+          </p>
+        </div>
+      </div>
+      <div id="review-center-container">
+        <!-- Renderizado dinámicamente desde js/review-center.js -->
+      </div>
+    </section>
+
+    <!-- VISTA 6: Centro "Lo que aprendí hoy", Conceptos Guardados y Marcadores -->
+    <section id="view-active-hub" class="view-section" aria-labelledby="active-hub-heading" hidden>
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Bitácora personal en localStorage</p>
+          <h1 id="active-hub-heading" class="page-title">Lo que aprendí hoy y Mi Cuaderno Activo</h1>
+          <p class="page-subtitle">
+            Sintetiza lo aprendido hoy, retoma tus marcadores pendientes y repasa los conceptos importantes e ideas resaltadas que has guardado.
+          </p>
+        </div>
+      </div>
+      <div id="active-hub-container">
+        <!-- Renderizado dinámicamente desde js/app.js -->
+      </div>
+    </section>
+
+    <!-- VISTA 7: Vista Dedicada de Cápsula de Aprendizaje (10 Secciones + Aprendizaje Activo) -->
+    <section id="view-capsule" class="view-section" aria-live="polite" hidden>
+      <!-- Renderizado dinámicamente por js/capsule.js -->
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>Plataforma de Estudio UNAM &middot; Repaso Inteligente y Aprendizaje Activo en localStorage.</p>
+      <button type="button" class="btn-link-subtle" id="btn-reset-progress">
+        Reiniciar todo el progreso guardado
+      </button>
+    </div>
+  </footer>
+
+  <!-- Scripts modulares sin frameworks -->
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/assistant.js"></script>
+  <script src="js/capsule.js"></script>
+  <script src="js/review-center.js"></script>
+  <script src="js/general-exam.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
